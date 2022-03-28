@@ -1,6 +1,6 @@
 <template>
   <div class="dice" @click="$emit('toggle-lock:dice')">
-    <div class="dice-eye-container">
+    <div class="dice-eye-container" v-if="value">
       <div
         class="dice-eye-row"
         v-for="diceRow in diceEyeRows"
@@ -14,6 +14,8 @@
         ></div>
       </div>
     </div>
+
+    <div v-else class="placeholder">?</div>
 
     <div class="lock">
       {{ locked ? "🔒" : "" }}
@@ -110,5 +112,13 @@ export default {
   &.active {
     visibility: visible;
   }
+}
+
+.placeholder {
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
 }
 </style>
