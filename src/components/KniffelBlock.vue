@@ -3,7 +3,9 @@
     <tr class="block-table-row" v-for="row in upperBlockRows" :key="row.label">
       <th class="block-table-cell">{{ row.label }}</th>
       <td class="block-table-cell">{{ row.value ? row.value : "0" }}</td>
-      <td class="block-table-cell">{{ countPotentialValue(row.count) }}</td>
+      <td class="block-table-cell">
+        {{ row.value ? "-" : countPotentialValue(row.count) }}
+      </td>
       <td class="block-table-cell">
         <button
           @click="setValue(row)"
