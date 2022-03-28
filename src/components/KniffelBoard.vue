@@ -1,19 +1,21 @@
 <template>
   <div class="board-container">
-    <div class="board">
-      <div class="dice-container">
-        <kniffel-dice
-          v-for="dice in dices"
-          :key="dice.id"
-          class="dice"
-          :value="dice.value"
-          :locked="dice.isLocked"
-          @toggle-lock:dice="toggleDiceLock(dice.id)"
-        />
+    <div class="invisible-container">
+      <div class="board">
+        <div class="dice-container">
+          <kniffel-dice
+            v-for="dice in dices"
+            :key="dice.id"
+            class="dice"
+            :value="dice.value"
+            :locked="dice.isLocked"
+            @toggle-lock:dice="toggleDiceLock(dice.id)"
+          />
+        </div>
+        <kniffel-block :dices="dices" class="kniffel-block" />
       </div>
-      <kniffel-block :dices="dices" class="kniffel-block" />
+      <roll-dice-button @roll:dice="rollDices" class="roll-dice-button" />
     </div>
-    <roll-dice-button @roll:dice="rollDices" />
   </div>
 </template>
 
@@ -63,6 +65,13 @@ export default {
   padding-top: 2rem;
   width: 100%;
 }
+
+.invisible-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
 .board {
   align-items: center;
   background: white;
@@ -72,14 +81,22 @@ export default {
   flex-direction: column;
   width: 100%;
 }
+
 .dice-container {
   display: flex;
   margin: 1rem 0 0.5rem;
 }
+
 .dice:not(:last-of-type) {
   margin-right: 1rem;
 }
+
 .kniffel-block {
   margin-bottom: 1rem;
+}
+
+.roll-dice-button {
+  display: flex;
+  margin: 10px 0 0 auto;
 }
 </style>
