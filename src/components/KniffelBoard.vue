@@ -2,11 +2,18 @@
   <div class="board-container">
     <div class="board">
       <div class="dice-container">
-        <kniffel-dice v-for="dice in numberOfDices" :key="dice" class="dice" />
+        <kniffel-dice
+          v-for="dice in dices"
+          :key="dice.id"
+          class="dice"
+          :value="dice.value"
+          :locked="dice.isLocked"
+          @toggle-lock:dice="toggleDiceLock(dice.id)"
+        />
       </div>
       <kniffel-block />
     </div>
-    <roll-dice-button />
+    <roll-dice-button @roll:dice="rollDices" />
   </div>
 </template>
 
@@ -19,9 +26,32 @@ export default {
   components: { RollDiceButton, KniffelBlock, KniffelDice },
   data() {
     return {
-      numberOfDices: 5,
-      dices: [],
+      dices: [
+        { id: 1, value: 0, isLocked: false },
+        { id: 2, value: 0, isLocked: false },
+        { id: 3, value: 0, isLocked: false },
+        { id: 4, value: 0, isLocked: false },
+        { id: 5, value: 0, isLocked: false },
+      ],
     };
+  },
+  methods: {
+    rollDices() {
+      this.dices = this.dices.map((dice) => {
+        if (dice.isLocked) {
+          return dice;
+        }
+
+        return {
+          ...dice,
+          value: Math.floor(Math.random() * 6) + 1,
+        };
+      });
+    },
+    toggleDiceLock(diceId) {
+      const dice = this.dices.find((dice) => dice.id === diceId);
+      dice.isLocked = !dice.isLocked;
+    },
   },
 };
 </script>
