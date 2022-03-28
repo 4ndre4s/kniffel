@@ -11,7 +11,7 @@
           @toggle-lock:dice="toggleDiceLock(dice.id)"
         />
       </div>
-      <kniffel-block />
+      <kniffel-block :dices="dices" class="kniffel-block" />
     </div>
     <roll-dice-button @roll:dice="rollDices" />
   </div>
@@ -78,5 +78,8 @@ export default {
 }
 .dice:not(:last-of-type) {
   margin-right: 1rem;
+}
+.kniffel-block {
+  margin-bottom: 1rem;
 }
 </style>
