@@ -1,7 +1,9 @@
 <template>
   <div class="dice" @click="$emit('toggle-lock:dice')">
     {{ value }}
-    {{ locked ? "🔒" : "" }}
+    <div class="lock">
+      {{ locked ? "🔒" : "" }}
+    </div>
   </div>
 </template>
 
@@ -23,10 +25,21 @@ export default {
 
 <style scoped>
 .dice {
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
+  align-items: center;
   background: var(--color-blue--light);
+  border-radius: 10px;
+  color: white;
   cursor: pointer;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+}
+.lock {
+  left: 90%;
+  position: absolute;
+  top: 90%;
+  transform: translate(-50%, -50%);
 }
 </style>
