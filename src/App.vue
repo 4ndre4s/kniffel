@@ -1,12 +1,24 @@
 <template>
-  <div></div>
+  <div class="page-container">
+    <nav-bar />
+    <kniffel-board />
+  </div>
 </template>
 
 <script>
+import NavBar from "@/components/NavBar";
+import KniffelBoard from "@/components/KniffelBoard";
 export default {
   name: "App",
+  components: { KniffelBoard, NavBar },
 };
 </script>
+
+<style scoped>
+.page-container {
+  height: 100%;
+}
+</style>
 
 <style lang="scss">
 :root {
