@@ -17,4 +17,24 @@ export default {
   --color-grey: #bbbbbb;
   --color-grey--dark: #9a9797;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+button {
+  font: inherit;
+}
 </style>
