@@ -4,15 +4,19 @@
       <div class="dice-container">
         <kniffel-dice v-for="dice in numberOfDices" :key="dice" class="dice" />
       </div>
+      <kniffel-block />
     </div>
+    <roll-dice-button />
   </div>
 </template>
 
 <script>
 import KniffelDice from "@/components/KniffelDice";
+import KniffelBlock from "@/components/KniffelBlock";
+import RollDiceButton from "@/components/RollDiceButton";
 export default {
   name: "KniffelBoard",
-  components: { KniffelDice },
+  components: { RollDiceButton, KniffelBlock, KniffelDice },
   data() {
     return {
       numberOfDices: 5,
@@ -30,11 +34,12 @@ export default {
   width: 100%;
 }
 .board {
+  align-items: center;
   background: white;
   border: 1px solid var(--color-grey);
   border-radius: 5px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   width: 100%;
 }
 .dice-container {
